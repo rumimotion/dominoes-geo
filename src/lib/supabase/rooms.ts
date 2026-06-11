@@ -74,7 +74,7 @@ export async function joinRoom(
   if ((existing?.length ?? 0) >= 4) throw new Error('კომნატა სავსეა');
 
   // Check if already in room
-  const alreadyIn = existing?.find(p => p.user_id === userId);
+  const alreadyIn = existing?.find((p: any) => p.user_id === userId);
   if (alreadyIn) throw new Error('უკვე ხართ ამ კომნატაში');
 
   // Assign next available seat

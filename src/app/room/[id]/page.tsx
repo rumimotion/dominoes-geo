@@ -61,8 +61,9 @@ export default function RoomPage({ params }: PageProps) {
 
   // Game finished
   if (room.status === 'finished') {
-    const winner = currentTotals[0] >= 355 ? 0 : 1;
-    const isMshrali = currentTotals[1 - winner] < 200;
+    const winner: 0 | 1 = currentTotals[0] >= 355 ? 0 : 1;
+const loser: 0 | 1 = winner === 0 ? 1 : 0;
+const isMshrali = currentTotals[loser] < 200;
     return (
       <div style={{ ...loadingStyle, gap: '20px' }} className="felt-texture">
         <div style={{ fontSize: '3rem' }}>🏆</div>
