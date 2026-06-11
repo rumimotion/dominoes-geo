@@ -16,7 +16,7 @@ const SEAT_ORDER = [0, 2, 1, 3] as const; // team A first, then B
 
 export default function Lobby({ room, players, myUserId, onStart, starting }: LobbyProps) {
   const isHost = players.find(p => p.userId === myUserId)?.userId === room.hostId;
-  const canStart = players.length === 4;
+  const canStart = players.length >= 2;
 
   const inviteUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/room/${room.id}?code=${room.code}`
