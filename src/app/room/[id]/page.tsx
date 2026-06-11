@@ -1,5 +1,4 @@
 'use client';
-import { use } from 'react';
 import { useRoom } from '@/hooks/useRoom';
 import { useGame } from '@/hooks/useGame';
 import GameBoard from '@/components/game/GameBoard';
@@ -11,11 +10,11 @@ import type { Tile, PlaceSide } from '@/types/game';
 import '@/styles/globals.css';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default function RoomPage({ params }: PageProps) {
-  const { id: roomId } = use(params);
+  const roomId = params.id;
   const roomState = useRoom(roomId);
   const { startGame, placeTile, passTurn, sendChat, submitting, error: gameError } = useGame(roomId);
 
