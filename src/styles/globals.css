@@ -1,0 +1,205 @@
+/* ============================================================
+   Georgian Domino — Global Styles
+   Aesthetic: Soviet-era Georgian courtyard, green felt table,
+   aged wood, chalk scoring, neighborhood warmth
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens ──────────────────────────────────────────── */
+:root {
+  /* Felt table green — not casino bright, aged Georgian courtyard */
+  --felt-deep:      #1a3320;
+  --felt-mid:       #1f3d28;
+  --felt-light:     #2a4d35;
+  --felt-highlight: #2e5a3c;
+
+  /* Wood tile colors */
+  --wood-dark:      #3d2b1a;
+  --wood-mid:       #5a3e26;
+  --wood-light:     #7a5535;
+  --wood-grain:     #6b4a2e;
+  --ivory:          #f5f0e6;
+  --ivory-dark:     #e8e0d0;
+
+  /* Ink / pip color */
+  --pip-black:      #1a1008;
+  --pip-dark:       #2a1810;
+
+  /* Score chalk colors */
+  --chalk-white:    #f0ede6;
+  --chalk-cream:    #d4cfc4;
+  --chalk-board:    #1e1e1e;
+
+  /* Team accent colors */
+  --team-a:         #c8a850; /* warm gold */
+  --team-b:         #a04040; /* Georgian wine red */
+
+  /* UI */
+  --border-wood:    rgba(90, 62, 38, 0.5);
+  --shadow-deep:    0 8px 32px rgba(0,0,0,0.6);
+  --shadow-tile:    2px 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+  --text-light:     #e8e4d8;
+  --text-muted:     #8a9080;
+  --glow-gold:      0 0 12px rgba(200, 168, 80, 0.4);
+
+  /* Typography */
+  --font-geo:       'Noto Sans Georgian', sans-serif;
+  --font-display:   'Playfair Display', serif;
+  --font-mono:      'IBM Plex Mono', monospace;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-geo);
+  background-color: var(--felt-deep);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Felt texture ───────────────────────────────────────────── */
+.felt-texture {
+  background-color: var(--felt-mid);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(255,255,255,0.03)'/%3E%3Ccircle cx='3' cy='3' r='0.5' fill='rgba(0,0,0,0.05)'/%3E%3C/svg%3E");
+}
+
+/* ── Wood border ────────────────────────────────────────────── */
+.wood-border {
+  border: 3px solid var(--wood-dark);
+  background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
+  box-shadow: var(--shadow-deep), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-geo);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.65rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #c8a850 0%, #9a7a2a 100%);
+  color: var(--pip-black);
+  box-shadow: 0 2px 8px rgba(200,168,80,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, #dab860 0%, #b08a3a 100%);
+  box-shadow: 0 4px 12px rgba(200,168,80,0.5);
+}
+.btn-primary:active { transform: translateY(1px); }
+
+.btn-secondary {
+  background: linear-gradient(180deg, #2e5a3c 0%, #1a3320 100%);
+  color: var(--ivory);
+  border: 1px solid var(--felt-light);
+}
+.btn-secondary:hover {
+  background: linear-gradient(180deg, #3a6a48 0%, #243a2c 100%);
+}
+
+.btn-danger {
+  background: linear-gradient(180deg, #a04040 0%, #6a2020 100%);
+  color: var(--ivory);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Input ──────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--felt-light);
+  border-radius: 4px;
+  color: var(--text-light);
+  font-family: var(--font-geo);
+  font-size: 1rem;
+  padding: 0.65rem 1rem;
+  transition: border-color 0.15s ease;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--team-a);
+  box-shadow: 0 0 0 2px rgba(200,168,80,0.15);
+}
+.input::placeholder { color: var(--text-muted); }
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.card {
+  background: rgba(26, 51, 32, 0.85);
+  border: 1px solid rgba(90, 62, 38, 0.4);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Score label ────────────────────────────────────────────── */
+.score-label {
+  font-family: var(--font-mono);
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--chalk-white);
+  text-shadow: 0 0 10px rgba(240,237,230,0.2);
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes tileSlide {
+  from { opacity: 0; transform: translateY(-20px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(200,168,80,0.3); }
+  50%       { box-shadow: 0 0 20px rgba(200,168,80,0.7); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+.animate-tile-in { animation: tileSlide 0.3s ease forwards; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-shake { animation: shake 0.3s ease; }
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--felt-deep); }
+::-webkit-scrollbar-thumb {
+  background: var(--wood-mid);
+  border-radius: 3px;
+}
+
+/* ── Mobile-first layout helpers ───────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container { padding: 0 2rem; }
+}
